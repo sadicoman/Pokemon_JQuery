@@ -1,0 +1,36 @@
+
+
+/* Variables */
+:root {
+	--background-color: #f0f1f6;
+	--box-color: #e0e5ec;
+	--border-radius: 12px;
+	--light-shadow: #ffffff73;
+	--dark-shadow: rgba(163, 177, 198, 0.6);
+	--transition-speed: 0.3s;
+}
+
+/* Réinitialisation de base */
+body,
+h1,
+h2,
+ul,
+li,
+button,
+input {
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style: none;
+}
+
+/* Configuration globale */
+body {
+	font-family: Arial, sans-serif;
+	background-color: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh; */
+}
+
