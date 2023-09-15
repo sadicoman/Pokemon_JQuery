@@ -1,13 +1,13 @@
-
-
 /* Variables */
 :root {
 	--background-color: #f0f1f6;
 	--box-color: #e0e5ec;
-	--border-radius: 12px;
-	--light-shadow: #ffffff73;
-	--dark-shadow: rgba(163, 177, 198, 0.6);
-	--transition-speed: 0.3s;
+	--table-width: 100%;
+	--header-bg-color: #f2f2f2;
+	--cell-padding: 8px;
+	--cell-border: 1px solid #dddddd;
+	--image-width: 50px;
+	--even-row-bg-color: #f2f2f2;
 }
 
 /* Réinitialisation de base */
@@ -34,3 +34,32 @@ body {
 	/* height: 100vh; */
 }
 
+/* Styles de base pour le tableau */
+.pokemon-table {
+	width: var(--table-width);
+	border-collapse: collapse;
+}
+
+/* Styles pour les en-têtes du tableau */
+.pokemon-table thead th {
+	background-color: var(--header-bg-color);
+	text-align: left;
+	padding: var(--cell-padding);
+}
+
+/* Styles pour les cellules du tableau */
+.pokemon-table tbody td {
+	border: var(--cell-border);
+	text-align: left;
+	padding: var(--cell-padding);
+}
+
+/* Styles pour les images de Pokémon */
+.pokemon-table img {
+	width: var(--image-width);
+}
+
+/* Alternance des couleurs des lignes pour une meilleure lisibilité */
+.pokemon-table tbody tr:nth-child(even) {
+	background-color: var(--even-row-bg-color);
+}

@@ -1,68 +1,61 @@
 "use strict";
 
-// Générer les tâches de base
-// Création d'un tableau contenant les tâches de base
-var baseTasks = ["Buy groceries", "Call mom", "Finish project"];
 
-// Boucle pour parcourir le tableau et ajouter chaque tâche à la liste "à faire"
-for (var i = 0; i < baseTasks.length; i++) {
-	// Ajout des tâches de base à la liste "à faire" (#tasks-to-do)
-	$("#tasks-to-do").append(
-		'<li class="task"><input type="checkbox" class="task-checkbox">' +
-			"<span>" +
-			baseTasks[i] +
-			"</span>" +
-			' <button class="delete">Delete</button></li>',
-	);
-}
+/*************************** 
+		Demo exemple 
+****************************/
+// let branches = $("<ul></ul>");
 
-// Ajouter une nouvelle tâche
-// Fonction exécutée lorsque l'utilisateur clique sur le bouton "Add"
-$("#add-task").click(function () {
-	// Récupération du contenu du champ texte #new-task
-	var newTask = $("#new-task").val();
+// $("body").html(branches);
 
-	// Vérification que le champ n'est pas vide
-	if (newTask !== "") {
-		// Ajout de la nouvelle tâche à la liste "à faire"
-		$("#tasks-to-do").append(
-			'<li class="task"><input type="checkbox" class="task-checkbox">' +
-				"<span>" +
-				baseTasks[i] +
-				"</span>" +
-				' <button class="delete">Delete</button></li>',
-		);
+// let brol;
 
-		// Effacement du champ texte pour la prochaine tâche
-		$("#new-task").val("");
-	}
-});
+// $.ajax({
+// 	url: "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches",
 
-// Gérer le changement d'état d'une tâche (effectuée ou non)
-// Fonction exécutée lorsque l'état d'une checkbox est modifié
-$("#todo-list").on("change", ".task-checkbox", function () {
-	// Récupération de l'élément <li> parent de la checkbox
-	var taskElement = $(this).parent();
+// 	type: "GET",
 
-	// Si la checkbox est cochée
-	if ($(this).is(":checked")) {
-		// Ajout de la classe "task--done" pour styliser la tâche comme "terminée"
-		taskElement.addClass("task--done");
+// 	// body: jsonBody,
 
-		// Déplacement de la tâche vers la liste des tâches terminées
-		taskElement.appendTo("#tasks-done");
-	} else {
-		// Retrait de la classe "task--done" car la tâche n'est plus terminée
-		taskElement.removeClass("task--done");
+// 	success: function (data) {
+// 		$.each(data, function (index, element) {
+// 			console.log(element.name);
 
-		// Retour de la tâche dans la liste des tâches "à faire"
-		taskElement.appendTo("#tasks-to-do");
-	}
-});
+// 			branches.append("<li>" + element.name + "</li>");
 
-// Supprimer une tâche
-// Fonction exécutée lorsque l'utilisateur clique sur le bouton "Delete"
-$("#todo-list").on("click", ".delete", function () {
-	// Suppression de l'élément <li> parent du bouton "Delete"
-	$(this).parent().remove();
+// 			brol = element.name;
+// 		});
+// 	},
+// });
+
+
+/*************************** 
+		Exo Pokemon 
+****************************/
+// Fonction AJAX pour récupérer les données des Pokémon depuis la PokeAPI
+$.ajax({
+    url: "https://pokeapi.co/api/v2/pokemon?limit=10",  // Limite à 10 Pokémon pour cet exemple
+    type: "GET",
+    success: function(data) {
+        // Boucle à travers chaque Pokémon
+        $.each(data.results, function(index, pokemon) {
+            // Récupérer des informations supplémentaires pour chaque Pokémon
+            $.ajax({
+                url: pokemon.url,
+                type: "GET",
+                success: function(pokeData) {
+                    // Création d'une nouvelle ligne de tableau pour ce Pokémon
+                    let newRow = $("<tr></tr>");
+                    
+                    // Ajout de l'ID, du nom et de l'image du Pokémon à la nouvelle ligne
+                    newRow.append("<td>" + pokeData.id + "</td>");
+                    newRow.append("<td>" + pokeData.name + "</td>");
+                    newRow.append("<td><img src='" + pokeData.sprites.front_default + "' /></td>");
+                    
+                    // Ajout de la nouvelle ligne au tableau
+                    $("#pokemon-table tbody").append(newRow);
+                }
+            });
+        });
+    }
 });
