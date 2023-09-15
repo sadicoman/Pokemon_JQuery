@@ -38,6 +38,7 @@ body {
 .pokemon-table {
 	width: var(--table-width);
 	border-collapse: collapse;
+	margin: 3rem;
 }
 
 /* Styles pour les en-têtes du tableau */
